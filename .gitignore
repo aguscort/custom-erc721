@@ -1,0 +1,29 @@
+# Dependencias
+node_modules/
+
+# Artefactos de compilación de Truffle
+build/
+artifacts/
+
+# Archivos de configuración de entorno
+.env
+.env.local
+.env.production
+.env.development
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Directorios de caché
+cache/
+coverage/
+
+# Archivos de editor
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Archivos de salida de herramientas de análisis
+reports/
