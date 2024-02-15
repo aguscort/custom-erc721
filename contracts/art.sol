@@ -52,5 +52,35 @@ contract ArtToken is ERC721, Ownable {
         return (SC_address, SC_money);
     }
     
+    function getArtWorks() public view returns (Art [] memory){
+        return art_works;        
+    }
+    
+    function getOwnerArtWork(address _owner) public view returns (Art [] memory){
+        Art [] memory result = new Art[](balanceOf(_owner)) ;
+        uint256 counter_owner = 0;
+        for (uint256 i = 0; i < art_works.length; i++) {
+            if (ownerOf(i) == _owner){
+                result[counter_owner] = art_works[i];
+                counter_owner++;                
+            }
+        }
+        return art_works;        
+    }
 
+    function createRandomArtWork(string memory _name) public payable {
+        require(msg.value >= fee);
+        _createArtWork(_name);
+    }
+    
+    function withdraw() external payable onlyOwner{
+        address payable _owner = payable(owner());
+        _owner.transfer(address(this).balance);
+    }
+    
+    function levelUp(uint256 _artId) public {
+        require(ownerOf(_artId) ==  _msg.sender);
+        Art storage art = art_works[_artId];
+        art.level++;
+    }
 }
